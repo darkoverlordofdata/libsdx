@@ -16,6 +16,7 @@ uses SDLImage
 uses SDLTTF
 uses GLib
 uses sdx
+uses sdx.files
 
 namespace sdx.graphics.s2d
 
@@ -45,10 +46,23 @@ namespace sdx.graphics.s2d
         id : int = ++uniqueId
         path: string
 
-        construct()
+        construct(path: string="")
+            //if path != "" do this.file(Sdx.files.resource(path))
             pass
 
-        construct region(region:TextureAtlas.AtlasRegion)
+        construct file(file: FileHandle)
+            path = file.getPath()
+            var raw = file.getRWops()
+            var surface = Texture.getSurface(file.getExt(), raw)
+
+            texture = Video.Texture.create_from_surface(Sdx.app.renderer, surface)
+            sdlFailIf(texture == null, "Unable to load image texture!")
+
+            texture.set_blend_mode(Video.BlendMode.BLEND)
+            width = surface.w
+            height = surface.h
+
+        construct region(region: TextureAtlas.AtlasRegion)
             var flags = (uint32)0x00010000  // SDL_SRCALPHA
             var rmask = (uint32)0x000000ff  
             var gmask = (uint32)0x0000ff00
@@ -127,6 +141,7 @@ namespace sdx.graphics.s2d
                     sprite.path = name
                     return sprite
             return null
+
 
         /**
          *  load a sprite from a file or resource

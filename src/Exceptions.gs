@@ -13,6 +13,7 @@ namespace sdx
         SdxRuntimeException
         NullPointerException
         NoSuchElementException
+        SDLException
 
     exception IOException 
         FileNotFound

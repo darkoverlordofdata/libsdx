@@ -3,6 +3,7 @@ uses sdx
 
 namespace sdx.files
 
+
     class FileHandle : Object
         prop readonly file: File
         prop readonly path: string
@@ -16,8 +17,23 @@ namespace sdx.files
             else
                 _file = File.new_for_path(fileName)
 
-            // print "FileHandle path %s", file.get_path()
-            // print "FileHandle parent %s", file.get_parent().get_path()
+        /**
+         * getRWops
+         *
+         * get the raw memory content of the underlying file
+         */
+        def getRWops(): SDL.RWops
+            if Sdx.files.isResource //&& file.getType() == FileType.Resource
+                var ptr = GLib.resources_lookup_data(getPath(), 0)
+                var raw = new SDL.RWops.from_mem((void*)ptr.get_data(), (int)ptr.get_size())
+                sdlFailIf(raw == null, "Unable to get resource "+getPath())
+                return raw
+            
+            else 
+                var raw = new SDL.RWops.from_file(getPath(), "r")
+                sdlFailIf(raw == null, "Unable to get file "+getPath())
+                return raw
+            
 
         def getType(): FileType
             return _type
@@ -25,6 +41,12 @@ namespace sdx.files
         def getName(): string
             return file.get_basename()
             
+        def getExt(): string
+            var name = getName()
+            var i = name.last_index_of(".")
+            if i < 0 do return ""
+            return name.substring(i)
+
         def getPath(): string
             return file.get_path()
 

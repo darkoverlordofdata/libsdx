@@ -10,6 +10,11 @@ uses SDL.Video
 uses sdx.graphics.s2d
 namespace sdx
 
+    def inline sdlFailIf(cond: bool, reason: string)
+        if cond
+            raise new Exception.SDLException(reason + ", SDL error: " + SDL.get_error())
+            GLib.Process.exit(0)
+
     /**
      * Core SDL Application
      */
@@ -87,38 +92,28 @@ namespace sdx
          */
         def virtual initialize() : bool
 
-            if SDL.init(SDL.InitFlag.VIDEO) < 0
-                print "SDL could not initialize! SDL Error: %s", SDL.get_error()
-                return false
+            sdlFailIf(SDL.init(SDL.InitFlag.VIDEO | SDL.InitFlag.TIMER | SDL.InitFlag.EVENTS) < 0, 
+                "SDL could not initialize! SDL Error: %s")
 
-            
+            sdlFailIf(SDLImage.init(SDLImage.InitFlags.PNG) < 0, 
+                "SDL_image could not initialize!")
 
-            if SDLImage.init(SDLImage.InitFlags.PNG) < 0
-                print "SDL_image could not initialize! SDL Error: %s", SDL.get_error()
-                return false
-
-            if !SDL.Hint.set_hint(Hint.RENDER_SCALE_QUALITY, "1")
-                print "Warning: Linear texture filtering not enabled!! SDL Error: %s", SDL.get_error()
+            sdlFailIf(!SDL.Hint.set_hint(Hint.RENDER_SCALE_QUALITY, "1"), 
+                "Warning: Linear texture filtering not enabled!!")
 
             window = new Window(name, Window.POS_CENTERED, Window.POS_CENTERED, width, height, WindowFlags.SHOWN)
-            if window == null
-                print "Window could not be created! SDL Error: %s", SDL.get_error()
-                return false
+            sdlFailIf(window == null, "Window could not be created!")
 
             renderer = Renderer.create(window, -1, RendererFlags.ACCELERATED | RendererFlags.PRESENTVSYNC)
-            if renderer == null
-                print "Renderer could not be created! SDL Error: %s", SDL.get_error()
-                return false
+            sdlFailIf(renderer == null, "Renderer could not be created!")
 
             renderer.set_draw_color(0xFF, 0xFF, 0xFF, 0)
 
-            if SDLTTF.init() == -1
-                print "SDL_ttf could not initialize! SDL Error: %s", SDL.get_error()
-                return false
+            sdlFailIf(SDLTTF.init() == -1, "SDL_ttf could not initialize!")
 
             print "Initialize defaultFont = %s", defaultFont
             if defaultFont != ""
-                font = sdx.Font.fromFile(defaultFont, 16)
+                font = new sdx.Font(Sdx.files.resource(defaultFont), 16)
                 if font == null
                     showFps = false
                     print "Failed to load font, showFps set to false. SDL Error: %s", SDL.get_error()
