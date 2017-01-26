@@ -3,7 +3,6 @@ src/ApplicationListener.gs
 src/Audio.gs
 src/Exceptions.gs
 src/Files.gs
-src/Font.gs
 src/Game.gs
 src/Graphics.gs
 src/Input.gs
@@ -19,6 +18,7 @@ src/graphics/Color.gs
 src/graphics/Texture.gs
 src/graphics/s2d/Batch.gs
 src/graphics/s2d/BitmapFont.gs
+src/graphics/s2d/Font.gs
 src/graphics/s2d/GlyphLayout.gs
 src/graphics/s2d/NinePatch.gs
 src/graphics/s2d/Sprite.gs

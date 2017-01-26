@@ -27,7 +27,6 @@ c_library: m
 *vala_source: Audio.gs
 *vala_source: Exceptions.gs
 *vala_source: Files.gs
-*vala_source: Font.gs
 *vala_source: Game.gs
 *vala_source: Graphics.gs
 *vala_source: Input.gs
@@ -43,6 +42,7 @@ c_library: m
 *vala_source: graphics/Texture.gs
 *vala_source: graphics/s2d/Batch.gs
 *vala_source: graphics/s2d/BitmapFont.gs
+*vala_source: graphics/s2d/Font.gs
 *vala_source: graphics/s2d/GlyphLayout.gs
 *vala_source: graphics/s2d/NinePatch.gs
 *vala_source: graphics/s2d/Sprite.gs
@@ -87,7 +87,6 @@ c_library: m
 *translate: genie src/Audio.gs
 *translate: genie src/Exceptions.gs
 *translate: genie src/Files.gs
-*translate: genie src/Font.gs
 *translate: genie src/Game.gs
 *translate: genie src/Graphics.gs
 *translate: genie src/Input.gs
@@ -103,6 +102,7 @@ c_library: m
 *translate: genie src/graphics/Texture.gs
 *translate: genie src/graphics/s2d/Batch.gs
 *translate: genie src/graphics/s2d/BitmapFont.gs
+*translate: genie src/graphics/s2d/Font.gs
 *translate: genie src/graphics/s2d/GlyphLayout.gs
 *translate: genie src/graphics/s2d/NinePatch.gs
 *translate: genie src/graphics/s2d/Sprite.gs

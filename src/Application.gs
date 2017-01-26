@@ -26,7 +26,7 @@ namespace sdx
         width : int
         height : int
         defaultFont: string
-        font: sdx.Font
+        font: Font
         running : bool
         window : Window
         renderer : Renderer
@@ -113,7 +113,7 @@ namespace sdx
 
             print "Initialize defaultFont = %s", defaultFont
             if defaultFont != ""
-                font = new sdx.Font(Sdx.files.resource(defaultFont), 16)
+                font = new Font(Sdx.files.resource(defaultFont), 16)
                 if font == null
                     showFps = false
                     print "Failed to load font, showFps set to false. SDL Error: %s", SDL.get_error()

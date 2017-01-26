@@ -32,9 +32,9 @@ namespace sdx.scenes.scene2d.ui
 
 
         class static LabelStyle : Object
-            font: sdx.Font
+            font: Font
             fontColor: Color
-            construct(font: sdx.Font, color: Color)
+            construct(font: Font, color: Color)
                 this.font = font
                 this.fontColor = color
 

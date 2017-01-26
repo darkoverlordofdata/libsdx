@@ -99,7 +99,7 @@ namespace sdx.graphics.s2d
          * @param font used to generate text
          * @param color foregound text color (background transparent)
          */
-        construct text(text : string, font : sdx.Font, color : sdx.graphics.Color)
+        construct text(text : string, font : Font, color : sdx.graphics.Color)
             var surface = font.render(text, color)
 
             texture = Video.Texture.create_from_surface(Sdx.app.renderer, surface)
@@ -117,7 +117,7 @@ namespace sdx.graphics.s2d
          * @param font used to generate text
          * @param color foregound text color (background transparent)
          */
-        def setText(text : string, font : sdx.Font, color : sdx.graphics.Color)
+        def setText(text : string, font : Font, color : sdx.graphics.Color)
             var surface = font.render(text, color)
 
             texture = Video.Texture.create_from_surface(Sdx.app.renderer, surface)
