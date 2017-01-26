@@ -55,7 +55,8 @@ namespace sdx
                 draw()
                 if showFps
                     if fpsSprite != null do fpsSprite = null
-                    fpsSprite = Sprite.fromRenderedText(this.renderer, font, "%2.2f".printf(Sdx.graphics.fps), sdx.graphics.Color.AntiqueWhite)
+                    fpsSprite = new Sprite.text("%2.2f".printf(Sdx.graphics.fps), font, sdx.graphics.Color.AntiqueWhite)
+                    // fpsSprite = Sprite.fromRenderedText(this.renderer, font, "%2.2f".printf(Sdx.graphics.fps), sdx.graphics.Color.AntiqueWhite)
                     fpsSprite.centered = false
 
             dispose()

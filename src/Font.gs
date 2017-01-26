@@ -58,8 +58,8 @@ namespace sdx
          * @param size of the font in points
          * @return new Font
          */
-        def static fromFile(path: string, size: int) : Font
-            return new Font.uri(path, size)
+        // def static fromFile(path: string, size: int) : Font
+        //     return new Font.uri(path, size)
 
         /**
          *  Render text for Sprite.fromRenderedText
