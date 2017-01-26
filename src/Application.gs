@@ -56,7 +56,6 @@ namespace sdx
                 if showFps
                     if fpsSprite != null do fpsSprite = null
                     fpsSprite = new Sprite.text("%2.2f".printf(Sdx.graphics.fps), font, sdx.graphics.Color.AntiqueWhite)
-                    // fpsSprite = Sprite.fromRenderedText(this.renderer, font, "%2.2f".printf(Sdx.graphics.fps), sdx.graphics.Color.AntiqueWhite)
                     fpsSprite.centered = false
 
             dispose()
@@ -125,8 +124,8 @@ namespace sdx
              * TODO: calculate best values for mixer.open
              */
             print "Initialized "
-            if SDLMixer.open(22050, SDL.Audio.AudioFormat.S16LSB, 2, 4096) == -1
-                print "SDL_mixer unagle to initialize! SDL Error: %s", SDL.get_error()
+            sdlFailIf(SDLMixer.open(22050, SDL.Audio.AudioFormat.S16LSB, 2, 4096) == -1,
+                "SDL_mixer unagle to initialize!")
 
             return true
 

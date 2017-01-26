@@ -34,32 +34,23 @@ namespace sdx
                 innerFont = new SDLTTF.Font.RW(rw, 0, size)
             
             else 
-                innerFont = new SDLTTF.Font(_path, size)
-        
-
-        construct uri(path: string, size: int)
-            _path = path
-            if _path.index_of("resource:///") == 0
-                var ptr = GLib.resources_lookup_data(path.substring(11), 0)
-                rw = new RWops.from_mem((void*)ptr.get_data(), (int)ptr.get_size())
+                rw = file.getRWops()
                 innerFont = new SDLTTF.Font.RW(rw, 0, size)
-            
-            else if _path.index_of("file:///") == 0
-                innerFont = new SDLTTF.Font(_path.substring(7), size)
-
-            else
-                innerFont = new SDLTTF.Font(_path, size)
+                // innerFont = new SDLTTF.Font(_path, size)
         
 
-        /**
-         *  load a sound effect from a file or resource
-         *
-         * @param path of the font file or resource
-         * @param size of the font in points
-         * @return new Font
-         */
-        // def static fromFile(path: string, size: int) : Font
-        //     return new Font.uri(path, size)
+        // construct uri(path: string, size: int)
+        //     _path = path
+        //     if _path.index_of("resource:///") == 0
+        //         var ptr = GLib.resources_lookup_data(path.substring(11), 0)
+        //         rw = new RWops.from_mem((void*)ptr.get_data(), (int)ptr.get_size())
+        //         innerFont = new SDLTTF.Font.RW(rw, 0, size)
+            
+        //     else if _path.index_of("file:///") == 0
+        //         innerFont = new SDLTTF.Font(_path.substring(7), size)
+
+        //     else
+        //         innerFont = new SDLTTF.Font(_path, size)
 
         /**
          *  Render text for Sprite.fromRenderedText
