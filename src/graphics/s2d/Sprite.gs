@@ -31,16 +31,8 @@ namespace sdx.graphics.s2d
         height : int
         x : int
         y : int
-        scale : Scale = Scale() {
-            x = 1.0,
-            y = 1.0
-        }
-        color : Video.Color = Video.Color() {
-            r = 255,
-            g = 255,
-            b = 255,
-            a = 255            
-        }
+        scale : Scale = Scale() { x = 1.0, y = 1.0 }
+        color : Video.Color = Video.Color() { r = 255, g = 255, b = 255, a = 255 }
         centered : bool = true
         layer : int = 0
         id : int = ++uniqueId
